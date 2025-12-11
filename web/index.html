@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+    <header class="nav">
+        <div class="wrap">
+            <div class="brand">
+                <img src="images/logo_branco.svg" width="128" height="128">
+            </div>
+            <nav class="menu">
+                <a href="index.html">Home</a>
+                <a href="cursos.html">Cursos</a>
+                <a href="index.html">Login</a>
+                <a class="signup" href="#">Cadastro</a>
+            </nav>
+        </div>
+    </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <h1>Aprenda com cursos que cabem no seu tempo</h1>
+      <p class="sub">Busque por tema, professor ou palavra-chave.</p>
+      <div class="search-wrap hero-search">
+        <input class="search" type="search" name="q" placeholder="Ex.: programação, design, marketing..." />
+      </div>
+
+      <!-- Espaço para chips de categoria (renderizados pelo back no futuro)
+      <div class="pill-row">
+        <a class="pill" href="#">Categoria 1</a>
+        <a class="pill" href="#">Categoria 2</a>
+      </div>
+      -->
+    </div>
+  </section>
+
+  <main class="page">
+    <div class="grid">
+      <!-- Destaques -->
+      <h2 class="section-title">Cursos em destaque</h2>
+
+      <div class="hscroll" aria-label="Cursos em destaque">
+        <div class="hcards" id="destaques">
+          <!-- O back deve renderizar os <article class="course-card h"> aqui
+          Exemplo de estrutura (NÃO renderizar agora):
+          <article class="course-card h">
+            <div class="thumb" style="background-image:url('URL-DA-CAPA'); background-size:cover; background-position:center"></div>
+            <div class="course-main">
+              <h3 class="title">TÍTULO</h3>
+              <p class="desc">DESCRIÇÃO CURTA</p>
+            </div>
+            <div class="price">R$ PREÇO</div>
+            <div class="course-actions"><a class="btn dark" href="course_publico.html?id=ID">Detalhes</a></div>
+          </article>
+          -->
+        </div>
+      </div>
+
+      <!-- Mensagem de estado vazio (remover quando houver destaques) -->
+      <p class="sub" style="margin-top:10px">Nenhum curso em destaque no momento.</p>
+
+      <!-- Banner simples (mantido; texto e link podem ser ajustados depois) -->
+      <section class="promo">
+        <div class="promo-card">
+          <div>
+            <h3>Vire afiliado do Brain Flow</h3>
+            <p class="desc">Monetize divulgando cursos e acompanhe suas comissões.</p>
+          </div>
+          <a class="btn primary" href="cadastro.html">Criar conta</a>
+        </div>
+      </section>
+
+      <!-- Categorias -->
+      <h2 class="section-title">Categorias</h2>
+      <div class="cat-grid" id="categorias">
+        <!-- O back deve renderizar os <a class="cat-card" href="..."><span>NOME</span></a> aqui -->
+      </div>
+
+      <!-- Mensagem de estado vazio (remover quando houver categorias) -->
+      <p class="sub" style="margin-top:10px">Categorias indisponíveis no momento.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© Brain Flow</span>
+      <nav class="footer-nav">
+        <a href="#">Sobre</a>
+        <a href="#">Suporte</a>
+        <a href="#">Termos</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

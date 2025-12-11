@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Perfil do Usuário{% endblock %}
+{% block content %}
+<main class="page">
+  <div class="grid" style="max-width: 480px; margin: 0 auto;">
+    <h1 class="section-title" style="text-align:center;">Meu Perfil</h1>
+    <form class="card" method="post" enctype="multipart/form-data" style="display:flex; flex-direction:column; align-items:center; gap:24px; padding:40px 32px;">
+      <label for="foto" class="avatar" style="width:96px; height:96px; border-radius:50%; background:#e4e9f0; display:flex; align-items:center; justify-content:center; font-size:40px; font-weight:900; color:#0f2741; margin-bottom:8px; cursor:pointer; overflow:hidden;">
+        <img src="{{ usuario['foto'] if usuario and usuario['foto'] else url_for('static', filename='images/perfil_padrao.svg') }}" alt="Foto de perfil" style="width:96px; height:96px; object-fit:cover; border-radius:50%;">
+        <input id="foto" name="foto" type="file" accept="image/*" style="display:none;">
+      </label>
+      <div style="text-align:center; width:100%;">
+        <div class="form-row">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" value="{{ usuario['nome'] }}" required style="width:100%;">
+        </div>
+        <div class="form-row">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" value="{{ usuario['email'] }}" required style="width:100%;">
+        </div>
+        <div class="form-row">
+          <label for="senha">Nova senha</label>
+          <input id="senha" name="senha" type="password" placeholder="Nova senha (opcional)" style="width:100%;">
+        </div>
+      </div>
+      <button class="btn primary" style="margin-top:18px; min-width:160px;">Salvar alterações</button>
+    </form>
+  </div>
+</main>
+{% endblock %}

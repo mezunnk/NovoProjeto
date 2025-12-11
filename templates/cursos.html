@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Cursos{% endblock %}
+{% block content %}
+	{% if cursos_assistindo and cursos_assistindo|length > 0 %}
+	<section style="max-width: 900px; margin: 40px auto 0;">
+		<h2 class="section-title" style="text-align:left; margin-bottom:18px;">Continue assistindo</h2>
+		<div class="cards-grid">
+			{% for curso in cursos_assistindo %}
+				<article class="course-card">
+					<div class="thumb" style="background-image:url('{{ curso['capa'] }}'); background-size:cover; background-position:center"></div>
+					<div class="course-main">
+						<h3 class="title">{{ curso['titulo'] }}</h3>
+						<p class="desc">{{ curso['descricao'] }}</p>
+					</div>
+					<div class="course-actions"><a class="btn dark" href="{{ url_for('player_curso', curso_id=curso['id']) }}">Assistir</a></div>
+				</article>
+			{% endfor %}
+		</div>
+	</section>
+	{% endif %}
+{% endblock %}
+    

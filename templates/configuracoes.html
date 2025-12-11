@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Configurações{% endblock %}
+{% block content %}
+<section class="settings-page">
+  <div class="wrap" style="max-width:600px; margin:40px auto;">
+    <h1 class="section-title">Configurações do Site</h1>
+    <div class="card" style="padding:40px 32px; text-align:center; color:#6b7a90;">
+      <p>Em breve você poderá personalizar preferências gerais do site aqui.</p>
+      <hr style="margin:32px 0;">
+      <div style="margin-top:24px;">
+        <label for="toggle-darkmode" style="font-size:1.1em; color:#173652; font-weight:600;">Modo noturno</label>
+        <button id="toggle-darkmode" style="margin-left:18px; padding:10px 28px; border-radius:22px; background:#173652; color:#fff; border:none; font-size:1em; font-weight:700; cursor:pointer; transition:background .2s;">Ativar</button>
+      </div>
+    </div>
+    <script>
+      function setDarkMode(active) {
+        if(active) {
+          document.body.classList.add('darkmode');
+          document.getElementById('toggle-darkmode').textContent = 'Desativar';
+        } else {
+          document.body.classList.remove('darkmode');
+          document.getElementById('toggle-darkmode').textContent = 'Ativar';
+        }
+        localStorage.setItem('darkmode', active ? '1' : '0');
+      }
+      document.getElementById('toggle-darkmode').onclick = function() {
+        setDarkMode(!document.body.classList.contains('darkmode'));
+      };
+      // Carregar preferência ao abrir
+      if(localStorage.getItem('darkmode') === '1') setDarkMode(true);
+    </script>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <form method="post">
+    <div class="grid">
+      <h1>Seja Bem-Vindo!</h1>
+      <p class="sub">Não tem conta? <a href="cadastro">Clique aqui.</a></p>
+
+      <form class="card" action="#" method="post">
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Email" required />
+        </div>
+        <div class="form-row">
+          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" placeholder="Senha" required />
+          <a class="forgot" href="{{ url_for('recuperar_senha') }}">Esqueceu a senha?</a>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="submit">Entrar</button>
+        </div>
+      </form>
+
+      <h2 class="section-title">Buscar Cursos</h2>
+      <div class="search-wrap">
+        <input class="search" id="buscaCursoInput" type="search" placeholder="Buscar cursos..." autocomplete="off" />
+      </div>
+
+      <div id="cursos-resultado">
+          <p>Use a busca acima para encontrar cursos disponíveis.</p>
+        </div>
+      </div>
+
+      <script>
+      const input = document.getElementById('buscaCursoInput');
+      const resultado = document.getElementById('cursos-resultado');
+
+      function renderCursos(cursos) {
+        if (!cursos.length) {
+          resultado.innerHTML = `<div class='empty-state'><h3>Nenhum curso encontrado</h3><p>Use a busca acima para encontrar cursos disponíveis.</p></div>`;
+          return;
+        }
+        resultado.innerHTML = cursos.map(curso => `
+          <article class="course-card" style="margin:12px 0; max-width:500px;">
+            <div class="thumb" style="background-image:url('${curso.capa}'); background-size:cover; background-position:center"></div>
+            <div class="course-main">
+              <h3 class="title">${curso.titulo}</h3>
+              <p class="desc">${curso.descricao}</p>
+            </div>
+            <div class="price">R$ ${curso.preco.toFixed(2)}</div>
+          </article>
+        `).join('');
+      }
+
+      function buscarCursos(q) {
+        fetch(`/api/buscar_cursos?q=${encodeURIComponent(q || '')}`)
+          .then(r => r.json())
+          .then(data => renderCursos(data.cursos || []));
+      }
+
+      // Busca inicial ao carregar a página
+      buscarCursos('');
+
+      input.addEventListener('input', function() {
+        buscarCursos(input.value.trim());
+      });
+      </script>
+    </div>
+  </main>
+    </form>
+{% endblock %}

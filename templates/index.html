@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Página Inicial{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="wrap hero-inner">
+      <h1>Aprenda com cursos que cabem no seu tempo</h1>
+      <p class="sub">Busque por tema, professor ou palavra-chave.</p>
+      <div class="search-wrap hero-search">
+        <input class="search" type="search" name="q" placeholder="Ex.: programação, design, marketing..." />
+      </div>
+
+      <!-- Espaço para chips de categoria (renderizados pelo back no futuro)
+      <div class="pill-row">
+        <a class="pill" href="#">Categoria 1</a>
+        <a class="pill" href="#">Categoria 2</a>
+      </div>
+      -->
+    </div>
+  </section>
+    <div class="grid">
+      <!-- Destaques -->
+      <h2 class="section-title">Cursos em destaque</h2>
+
+      <div class="hscroll" aria-label="Cursos em destaque">
+        <div class="hcards" id="destaques">
+          {% if cursos_destaque and cursos_destaque|length > 0 %}
+            {% for curso in cursos_destaque %}
+              <article class="course-card h">
+                <div class="thumb" style="background-image:url('{{ curso['capa'] }}'); background-size:cover; background-position:center"></div>
+                <div class="course-main">
+                  <h3 class="title">{{ curso['titulo'] }}</h3>
+                  <p class="desc">{{ curso['descricao'] }}</p>
+                </div>
+                <div class="course-actions"><a class="btn dark" href="{{ url_for('player_curso', curso_id=curso['id']) }}">Assistir</a></div>
+              </article>
+            {% endfor %}
+          {% else %}
+            <p class="sub" style="margin-top:10px">Nenhum curso em destaque no momento.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Mensagem de estado vazio (remover quando houver destaques) -->
+      <p class="sub" style="margin-top:10px">Nenhum curso em destaque no momento.</p>
+
+      <!-- Banner simples (mantido; texto e link podem ser ajustados depois) -->
+      <!-- Banner de afiliado removido -->
+
+      <!-- Categorias -->
+      <h2 class="section-title">Categorias</h2>
+      <div class="cat-grid" id="categorias">
+        <!-- O back deve renderizar os <a class="cat-card" href="..."><span>NOME</span></a> aqui -->
+      </div>
+
+      <!-- Mensagem de estado vazio (remover quando houver categorias) -->
+      <p class="sub" style="margin-top:10px">Categorias indisponíveis no momento.</p>
+    </div>
+{% endblock %}

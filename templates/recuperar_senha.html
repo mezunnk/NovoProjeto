@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Recuperar Senha{% endblock %}
+{% block content %}
+
+<main class="page">
+    <div class="grid">
+      <h1>Esqueci minha senha</h1>
+      <p class="sub">Digite seu e‑mail que enviaremos um link para redefinir a senha.</p>
+
+      <form class="card" action="{{ url_for('recuperar_senha') }}" method="post">
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Seu email" required />
+        </div>
+
+
+        <div class="actions">
+          <button class="btn primary" type="submit">Recuperar senha</button>
+        </div>
+
+        {% if mensagem %}
+        <div class="alert" style="margin-top:18px; color:#1a2a3f; background:#eaf3ff; border-radius:6px; padding:10px; font-weight:500;">
+          {{ mensagem }}
+        </div>
+        {% endif %}
+
+        <p class="sub" style="margin-top:18px">
+          Lembrou a senha? <a href="index.html">Fazer login</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+{% endblock %}

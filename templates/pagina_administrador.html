@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Administração{% endblock %}
+{% block content %}
+<section class="admin-page">
+  <div class="wrap" style="max-width:1100px; margin:40px auto; display:flex; gap:32px;">
+    <nav class="admin-menu" style="min-width:220px;">
+      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px;">
+        <li><a href="#" class="admin-tab active" data-tab="usuarios">Usuários</a></li>
+        <li><a href="#" class="admin-tab" data-tab="cursos">Cursos</a></li>
+        <li><a href="#" class="admin-tab" data-tab="config">Configurações</a></li>
+      </ul>
+    </nav>
+    <div class="admin-content card" id="admin-content" style="flex:1; min-height:320px; background:#173652; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.10);">
+      <div id="admin-loading" style="display:none; text-align:center; padding:40px;">Carregando...</div>
+      <div id="admin-panel-content"></div>
+    </div>
+  </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function() {
+  function loadAdminTab(tab) {
+    $('#admin-loading').show();
+    $('#admin-panel-content').hide();
+    $.get('/admin/painel/' + tab, function(data) {
+      $('#admin-panel-content').html(data).show();
+      $('#admin-loading').hide();
+    });
+  }
+  $('.admin-tab').click(function(e) {
+    e.preventDefault();
+    $('.admin-tab').removeClass('active');
+    $(this).addClass('active');
+    var tab = $(this).data('tab');
+    loadAdminTab(tab);
+  });
+  // Carregar automaticamente a aba de usuários ao abrir o painel
+  loadAdminTab('usuarios');
+});
+</script>
+<style>
+.admin-content.card {
+  background: #173652 !important;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  color: #fff !important;
+}
+.admin-panel-content, .admin-panel-content * {
+  color: #fff !important;
+}
+.admin-tab.active { font-weight: bold; color: #f0b41b; }
+.admin-tab { color: #173652; text-decoration: none; font-weight: 600; padding: 8px 0; display: block; border-radius: 6px; transition: background .2s; }
+.admin-tab:hover { background: #fff2c7; }
+</style>
+{% endblock %}
