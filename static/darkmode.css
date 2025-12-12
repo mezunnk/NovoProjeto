@@ -1,0 +1,100 @@
+body.darkmode .form-row label,
+body.darkmode.pagina-perfil label {
+    color: #6b7a90 !important;
+}
+/* Página de Perfil */
+body.darkmode.pagina-perfil .profile-card,
+body.darkmode.pagina-perfil .card,
+body.darkmode.pagina-perfil .profile-info {
+    background: #131c29 !important;
+    color: #fff !important;
+    border: 1px solid #223a5f !important;
+}
+body.darkmode.pagina-perfil .desc,
+body.darkmode.pagina-perfil .sub,
+body.darkmode.pagina-perfil .muted {
+    color: #6b7a90 !important;
+}
+body.darkmode .course-card {
+    background: #131c29 !important;
+    color: #fff !important;
+    border: 1px solid #223a5f !important;
+}
+/* Cards globais */
+body.darkmode .card {
+    background: #131c29 !important;
+    color: #fff !important;
+    border: 1px solid #223a5f !important;
+}
+/* darkmode.css - regras globais e por página para modo noturno */
+
+body.darkmode {
+    background:#1A2A3F !important; /* tom mais claro que #1A2A3F */
+    color: #e2eafc;
+}
+
+body.darkmode header, body.darkmode .header {
+    background: linear-gradient(90deg, #0a1828 60%, #14243a 100%) !important;
+    color: #e2eafc;
+}
+
+body.darkmode footer, body.darkmode .footer {
+    background: #101c2c !important;
+    color: #e2eafc;
+    border-top: none;
+}
+
+body.darkmode .btn, body.darkmode .btn.dark {
+    background: #285178ff !important;
+    color: #fff !important;
+}
+
+/* Home (index.html) */
+body.darkmode.pagina-home {
+    background: #0d1726 !important;
+}
+body.darkmode.pagina-home .hero {
+    background: linear-gradient(120deg, #173652 60%, #101c2c 100%);
+    color: #fff;
+}
+body.darkmode.pagina-home .section-title,
+body.darkmode.pagina-home .title,
+body.darkmode.pagina-home .desc,
+body.darkmode.pagina-home .sub {
+    color: #e2eafc !important;
+}
+body.darkmode.pagina-home .course-card {
+    background: #131c29 !important; /* um pouco mais escuro que #1A2A3F */
+    color: #fff !important;
+    border: 1px solid #223a5f;
+}
+
+/* Painel admin */
+body.darkmode.pagina-admin .admin-panel {
+    background: #173652 !important;
+    color: #fff !important;
+}
+body.darkmode.pagina-admin .admin-table th,
+body.darkmode.pagina-admin .admin-table td {
+    background: #223a5f !important;
+    color: #e2eafc !important;
+}
+
+/* Login */
+body.darkmode.pagina-login .login-box {
+    background: #173652 !important;
+    color: #fff !important;
+    border: 1px solid #223a5f;
+}
+
+/* Outros ajustes globais */
+body.darkmode .badge {
+    background: #285178ff !important;
+    color: #fff !important;
+}
+body.darkmode input, body.darkmode textarea, body.darkmode select {
+    background: #223a5f !important;
+    color: #e2eafc !important;
+    border: 1px solid #285178ff;
+}
+

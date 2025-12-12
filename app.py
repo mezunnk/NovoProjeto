@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask import jsonify
 import sqlite3
@@ -411,6 +410,21 @@ def adicionar_tag_usuario(user_id):
     conn.commit()
     conn.close()
     return 'Tag atualizada com sucesso!'
+
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    nome = session.get('usuario')
+    if not nome:
+        return redirect(url_for('login'))
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM usuarios WHERE nome = ?', (nome,))
+    usuario = cursor.fetchone()
+    conn.close()
+    if not usuario or usuario['email'] != 'edersonluan@exemplo.com':
+        return redirect(url_for('index'))
+    return render_template('dashboard_admin.html', usuario=usuario)
+
 
 
 

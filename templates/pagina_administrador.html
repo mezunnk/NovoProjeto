@@ -2,16 +2,20 @@
 {% block title %}Administração{% endblock %}
 {% block content %}
 <section class="admin-page">
-  <div class="wrap" style="max-width:1100px; margin:40px auto; display:flex; gap:32px;">
-    <nav class="admin-menu" style="min-width:220px;">
-      <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px;">
+  <div class="admin-header">
+    <h1>Painel de Administração</h1>
+    <span class="admin-header-desc">Gerencie usuários, cursos e configurações do sistema</span>
+  </div>
+  <div class="admin-wrap">
+    <nav class="admin-menu">
+      <ul>
         <li><a href="#" class="admin-tab active" data-tab="usuarios">Usuários</a></li>
         <li><a href="#" class="admin-tab" data-tab="cursos">Cursos</a></li>
         <li><a href="#" class="admin-tab" data-tab="config">Configurações</a></li>
       </ul>
     </nav>
-    <div class="admin-content card" id="admin-content" style="flex:1; min-height:320px; background:#173652; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.10);">
-      <div id="admin-loading" style="display:none; text-align:center; padding:40px;">Carregando...</div>
+    <div class="admin-content card" id="admin-content">
+      <div id="admin-loading">Carregando...</div>
       <div id="admin-panel-content"></div>
     </div>
   </div>
@@ -34,22 +38,128 @@ $(function() {
     var tab = $(this).data('tab');
     loadAdminTab(tab);
   });
-  // Carregar automaticamente a aba de usuários ao abrir o painel
   loadAdminTab('usuarios');
 });
 </script>
+{% block pagestyle %}
 <style>
-.admin-content.card {
-  background: #173652 !important;
+.admin-header {
+  background: #f7f9fc;
+  border-radius: 18px;
+  padding: 32px 32px 18px 32px;
+  margin: 32px auto 40px auto;
+  max-width: 1100px;
+  box-shadow: 0 2px 16px rgba(15,39,65,0.06);
+  text-align: left;
+}
+.admin-header h1 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin: 0 0 6px 0;
+  color: #173652;
+}
+.admin-header-desc {
+  color: #6b7a90;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.admin-wrap {
+  display: flex;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto 40px auto;
+  align-items: flex-start;
+}
+.admin-menu {
+  min-width: 220px;
+  background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-  color: #fff !important;
+  box-shadow: 0 2px 12px rgba(15,39,65,0.06);
+  padding: 24px 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
-.admin-panel-content, .admin-panel-content * {
-  color: #fff !important;
+.admin-menu ul {
+  list-style: none;
+  padding: 0 0 0 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.admin-tab.active { font-weight: bold; color: #f0b41b; }
-.admin-tab { color: #173652; text-decoration: none; font-weight: 600; padding: 8px 0; display: block; border-radius: 6px; transition: background .2s; }
-.admin-tab:hover { background: #fff2c7; }
+.admin-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #173652;
+  text-decoration: none;
+  padding: 12px 32px;
+  border-radius: 16px;
+  margin: 0 8px;
+  transition: background .18s, color .18s;
+}
+.admin-tab.active, .admin-tab:hover {
+  background: #173652;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(15,39,65,0.08);
+}
+.admin-icon {
+  font-size: 1.2em;
+}
+.admin-content.card {
+  flex: 1;
+  min-height: 320px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(15,39,65,0.08);
+  padding: 32px 28px 28px 28px;
+  margin-bottom: 40px;
+}
+#admin-loading {
+  display: none;
+  text-align: center;
+  padding: 40px;
+  color: #173652;
+  font-size: 1.2rem;
+}
+@media (max-width: 900px) {
+  .admin-wrap { flex-direction: column; gap: 18px; }
+  .admin-menu { min-width: 0; width: 100%; flex-direction: row; }
+  .admin-content.card { padding: 18px 8px; }
+}
+body.darkmode .admin-header {
+  background: #1a2a3f;
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(15,39,65,0.18);
+}
+body.darkmode .admin-header h1 {
+  color: #fff;
+}
+body.darkmode .admin-header-desc {
+  color: #6b7a90;
+}
+body.darkmode .admin-menu {
+  background: #131c29;
+  box-shadow: 0 2px 12px rgba(15,39,65,0.18);
+}
+body.darkmode .admin-tab {
+  color: #6b7a90;
+}
+body.darkmode .admin-tab.active, body.darkmode .admin-tab:hover {
+  background: #173652;
+  color: #fff;
+}
+body.darkmode .admin-content.card {
+  background: #131c29;
+  color: #fff;
+  box-shadow: 0 2px 16px rgba(15,39,65,0.18);
+}
+#admin-loading {
+  color: #6b7a90;
+}
 </style>
+{% endblock %}
 {% endblock %}

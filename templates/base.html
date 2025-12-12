@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}Brain Flow – Fórum{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='darkmode.css') }}" />
 </head>
-<body>
+<body{% block bodyclass %}{% endblock %}>
     <!-- Header -->
     <header class="nav">
         <div class="wrap">
@@ -21,7 +22,7 @@
                     <div class="user-dropdown">
                                                 <button class="user-btn" onclick="toggleUserMenu(event)" style="display:flex;align-items:center;gap:10px;">
                                                     <span>Bem-vindo, {% if usuario['nome'] is defined %}{{ usuario['nome'] }}{% else %}{{ usuario }}{% endif %}</span>
-                                                    <img src="{{ usuario['foto'] if usuario and usuario['foto'] else url_for('static', filename='images/perfil_padrao.svg') }}" alt="Foto de perfil" style="width:32px;height:32px;border-radius:50%;background:#fff2c7;object-fit:cover;box-shadow:0 1px 4px #0001;">
+                                                    <img src="{{ usuario['foto'] if usuario and usuario['foto'] else url_for('static', filename='images/perfil_padrao.svg') }}" alt="Foto de perfil" style="width:44px;height:44px;border-radius:50%;background:#fff2c7;object-fit:cover;box-shadow:0 1px 4px #0001;">
                                                 </button>
                         <div class="user-menu" id="userMenu">
                             <a href="{{ url_for('perfil') }}">Perfil</a>
@@ -84,37 +85,8 @@ window.addEventListener('DOMContentLoaded', function() {
     if(localStorage.getItem('darkmode') === '1') setDarkMode(true);
 });
 </script>
-<style>
-body.darkmode {
-    background: #101c2c !important;
-    color: #e2eafc !important;
-}
-body.darkmode .card, body.darkmode .admin-content.card {
-    background: #0a141eff !important;
-    color: #fff !important;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-}
-body.darkmode header.nav {
-    background: #0a141eff !important;
-    color: #fff !important;
-}
-body.darkmode .menu a, body.darkmode .footer-nav a {
-    color: #285178ff !important;
-}
-body.darkmode .footer {
-    background: #0a141eff !important;
-    color: #fff !important;
-}
-body.darkmode .section-title, body.darkmode h1, body.darkmode h2, body.darkmode h3 {
-    color: #fff !important;
-    body.darkmode .user-btn span {
-        color: #285178ff !important;
-    }
-    body.darkmode .user-btn {
-        color: #285178ff !important;
-    }
-}
-</style>
+{% block pagestyle %}{% endblock %}
+<!-- Darkmode CSS agora está em static/darkmode.css -->
 </body>
 </html>
 
